@@ -73,3 +73,4 @@ Default values:
 - V2 — configurable values from Home Assistant
 - V3 — development workflow with Visual Studio Code + Git + GitHub
 - V4 — GitHub release and HACS update test
+V3 development workflow started with Visual Studio Code.
