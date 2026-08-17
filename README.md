@@ -2,16 +2,18 @@
 
 A simple custom integration for Home Assistant, designed for testing installation and update workflows through HACS.
 
-## Version 2.0.0
+## Version 3.0.0
 
-Version 2 adds configurable sensor values directly from Home Assistant.
+Version 3 adds automatic integration reload after option changes.
 
-The virtual device still contains two sensors:
+The virtual device contains two sensors:
 
 - Temperature
 - Humidity
 
-But the values are no longer fixed in the code.
+The sensor values can be configured directly from Home Assistant.
+
+Changes to temperature and humidity are now applied automatically without restarting Home Assistant.
 
 ## Configuration
 
@@ -38,18 +40,29 @@ Default values:
 ## Installation with HACS
 
 1. Open HACS in Home Assistant.
-2. Go to custom repositories.
+2. Go to Custom repositories.
 3. Add this repository:
    `https://github.com/marcuandreistefan/ha-fake-climate-device`
 4. Select category:
    `Integration`
 5. Download Fake Climate Device.
-6. Restart Home Assistant.
+6. Restart Home Assistant after installing or updating the integration.
 7. Go to:
    `Settings → Devices & Services → Add Integration`
 8. Search for:
    `Fake Climate Device`
 9. Add the integration.
+
+## Expected result
+
+The integration creates one virtual device with two entities:
+
+- Temperature sensor
+- Humidity sensor
+
+The values can be changed from the integration options.
+
+From version 3.0.0, changing the options automatically reloads the integration, so a full Home Assistant restart is not required just to apply new temperature or humidity values.
 
 ## Version history
 
@@ -67,13 +80,17 @@ Default values:
 - Home Assistant Options Flow
 - Sensor values are read from integration options
 
+### v3.0.0
+
+- Automatic integration reload after option changes
+- Temperature changes apply without restarting Home Assistant
+- Humidity changes apply without restarting Home Assistant
+- Development workflow moved to Visual Studio Code + Git + GitHub
+- SSH signed commits with GitHub Verified status
+
 ## Project roadmap
 
 - V1 — fixed temperature and humidity values
 - V2 — configurable values from Home Assistant
-- V3 — development workflow with Visual Studio Code + Git + GitHub
-- V4 — GitHub release and HACS update test
-
-SSH commit signing test.
-
-V3 development workflow started with Visual Studio Code.
+- V3 — automatic reload after option changes
+- V4 — GitHub release and HACS update workflow test
