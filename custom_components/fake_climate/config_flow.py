@@ -48,12 +48,6 @@ class FakeClimateOptionsFlow(config_entries.OptionsFlowWithReload):
     async def async_step_init(self, user_input=None):
         """Manage the options."""
 
-        if user_input is not None:
-            return self.async_create_entry(
-                title="",
-                data=user_input,
-            )
-
         current_temperature = self.config_entry.options.get(
             CONF_TEMPERATURE,
             DEFAULT_TEMPERATURE,
@@ -77,7 +71,26 @@ class FakeClimateOptionsFlow(config_entries.OptionsFlowWithReload):
             }
         )
 
+        errors = {}
+
+        if user_input is not None:
+            temperature = user_input[CONF_TEMPERATURE]
+            humidity = user_input[CONF_HUMIDITY]
+
+            if not 0 <= temperature <= 50:
+                errors[CONF_TEMPERATURE] = "temperature_out_of_range"
+
+            if not 0 <= humidity <= 100:
+                errors[CONF_HUMIDITY] = "humidity_out_of_range"
+
+            if not errors:
+                return self.async_create_entry(
+                    title="",
+                    data=user_input,
+                )
+
         return self.async_show_form(
             step_id="init",
             data_schema=schema,
+            errors=errors,
         )

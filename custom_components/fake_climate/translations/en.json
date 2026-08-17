@@ -21,6 +21,10 @@
           "humidity": "Humidity"
         }
       }
+    },
+    "error": {
+      "temperature_out_of_range": "Temperature must be between 0 and 50 °C.",
+      "humidity_out_of_range": "Humidity must be between 0 and 100 %."
     }
   }
 }

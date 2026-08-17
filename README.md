@@ -2,9 +2,11 @@
 
 A simple custom integration for Home Assistant, designed for testing installation and update workflows through HACS.
 
-## Version 3.0.0
+## Version 3.1.0
 
-Version 3 adds automatic integration reload after option changes.
+Version 3.1.0 adds validation for configured sensor values.
+
+Version 3.0.0 added automatic integration reload after option changes.
 
 The virtual device contains two sensors:
 
@@ -30,6 +32,11 @@ Default values:
 
 - Temperature: 24 °C
 - Humidity: 50 %
+
+Allowed ranges:
+
+- Temperature: 0–50 °C
+- Humidity: 0–100 %
 
 ## Device information
 
@@ -87,6 +94,13 @@ From version 3.0.0, changing the options automatically reloads the integration, 
 - Humidity changes apply without restarting Home Assistant
 - Development workflow moved to Visual Studio Code + Git + GitHub
 - SSH signed commits with GitHub Verified status
+
+### v3.1.0
+
+- Added validation for configurable sensor values
+- Temperature must be between 0 and 50 °C
+- Humidity must be between 0 and 100 %
+- Existing automatic reload behavior from v3.0.0 remains unchanged
 
 ## Project roadmap
 
