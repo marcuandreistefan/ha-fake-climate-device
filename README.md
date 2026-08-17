@@ -2,9 +2,29 @@
 
 A simple custom integration for Home Assistant, designed for testing installation and update workflows through HACS.
 
-## Version 1.0.0
+## Version 2.0.0
 
-This first version creates one virtual device with two fixed-value sensors:
+Version 2 adds configurable sensor values directly from Home Assistant.
+
+The virtual device still contains two sensors:
+
+- Temperature
+- Humidity
+
+But the values are no longer fixed in the code.
+
+## Configuration
+
+After adding the integration, open:
+
+`Settings → Devices & Services → Fake Climate Device`
+
+Then open the integration options and configure:
+
+- Temperature
+- Humidity
+
+Default values:
 
 - Temperature: 24 °C
 - Humidity: 50 %
@@ -31,20 +51,25 @@ This first version creates one virtual device with two fixed-value sensors:
    `Fake Climate Device`
 9. Add the integration.
 
-## Expected result
+## Version history
 
-Home Assistant should create one device:
+### v1.0.0
 
-`Fake Climate Device`
+- Fixed temperature: 24 °C
+- Fixed humidity: 50 %
+- HACS installation test
+- Home Assistant device registration
 
-with two entities:
+### v2.0.0
 
-- Temperature — 24 °C
-- Humidity — 50 %
+- Configurable temperature
+- Configurable humidity
+- Home Assistant Options Flow
+- Sensor values are read from integration options
 
 ## Project roadmap
 
 - V1 — fixed temperature and humidity values
 - V2 — configurable values from Home Assistant
-- V3 — dynamically changing simulated values
+- V3 — development workflow with Visual Studio Code + Git + GitHub
 - V4 — GitHub release and HACS update test
