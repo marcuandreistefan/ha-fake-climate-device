@@ -1,0 +1,14 @@
+{
+  "title": "Fake Climate Device",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Add Fake Climate Device",
+        "description": "Create a virtual device with a temperature sensor at 24 °C and a humidity sensor at 50%."
+      }
+    },
+    "abort": {
+      "already_configured": "Fake Climate Device is already configured."
+    }
+  }
+}
