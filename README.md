@@ -74,4 +74,6 @@ Default values:
 - V3 — development workflow with Visual Studio Code + Git + GitHub
 - V4 — GitHub release and HACS update test
 
+SSH commit signing test.
+
 V3 development workflow started with Visual Studio Code.
