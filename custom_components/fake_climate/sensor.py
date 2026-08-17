@@ -8,7 +8,16 @@ from homeassistant.components.sensor import (
 from homeassistant.const import PERCENTAGE, UnitOfTemperature
 from homeassistant.helpers.device_registry import DeviceInfo
 
-from .const import DEVICE_NAME, DOMAIN, MANUFACTURER, MODEL
+from .const import (
+    CONF_HUMIDITY,
+    CONF_TEMPERATURE,
+    DEFAULT_HUMIDITY,
+    DEFAULT_TEMPERATURE,
+    DEVICE_NAME,
+    DOMAIN,
+    MANUFACTURER,
+    MODEL,
+)
 
 
 async def async_setup_entry(hass, entry, async_add_entities):
@@ -16,8 +25,8 @@ async def async_setup_entry(hass, entry, async_add_entities):
 
     async_add_entities(
         [
-            FakeTemperatureSensor(),
-            FakeHumiditySensor(),
+            FakeTemperatureSensor(entry),
+            FakeHumiditySensor(entry),
         ]
     )
 
@@ -26,6 +35,10 @@ class FakeClimateBaseSensor(SensorEntity):
     """Base class for Fake Climate Device sensors."""
 
     _attr_has_entity_name = True
+
+    def __init__(self, entry):
+        """Initialize the sensor."""
+        self._entry = entry
 
     @property
     def device_info(self) -> DeviceInfo:
@@ -47,7 +60,14 @@ class FakeTemperatureSensor(FakeClimateBaseSensor):
     _attr_device_class = SensorDeviceClass.TEMPERATURE
     _attr_native_unit_of_measurement = UnitOfTemperature.CELSIUS
     _attr_state_class = SensorStateClass.MEASUREMENT
-    _attr_native_value = 24.0
+
+    @property
+    def native_value(self):
+        """Return configured temperature."""
+        return self._entry.options.get(
+            CONF_TEMPERATURE,
+            DEFAULT_TEMPERATURE,
+        )
 
 
 class FakeHumiditySensor(FakeClimateBaseSensor):
@@ -58,4 +78,11 @@ class FakeHumiditySensor(FakeClimateBaseSensor):
     _attr_device_class = SensorDeviceClass.HUMIDITY
     _attr_native_unit_of_measurement = PERCENTAGE
     _attr_state_class = SensorStateClass.MEASUREMENT
-    _attr_native_value = 50.0
+
+    @property
+    def native_value(self):
+        """Return configured humidity."""
+        return self._entry.options.get(
+            CONF_HUMIDITY,
+            DEFAULT_HUMIDITY,
+        )
