@@ -42,7 +42,7 @@ class FakeClimateConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         return FakeClimateOptionsFlow()
 
 
-class FakeClimateOptionsFlow(config_entries.OptionsFlow):
+class FakeClimateOptionsFlow(config_entries.OptionsFlowWithReload):
     """Handle Fake Climate Device options."""
 
     async def async_step_init(self, user_input=None):
