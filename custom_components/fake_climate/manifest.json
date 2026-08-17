@@ -1,0 +1,12 @@
+{
+  "domain": "fake_climate",
+  "name": "Fake Climate Device",
+  "version": "1.0.0",
+  "documentation": "https://github.com/marcuandreistefan/ha-fake-climate-device",
+  "issue_tracker": "https://github.com/marcuandreistefan/ha-fake-climate-device/issues",
+  "codeowners": [
+    "@marcuandreistefan"
+  ],
+  "config_flow": true,
+  "integration_type": "device"
+}
